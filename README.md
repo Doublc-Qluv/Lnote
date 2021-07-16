@@ -1,0 +1,2 @@
+# Lnote
+make some note
