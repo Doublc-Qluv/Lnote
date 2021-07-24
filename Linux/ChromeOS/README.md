@@ -90,35 +90,45 @@ ChromeOS
 
 ## 更改 BIOS 安装 Linux 发行版
 
-`cd; curl -LO mrchromebox.tech/firmware-util.sh`
+1. 安装mrchromebox的固件(实现UEFI引导)
 
-`sudo install -Dt /usr/local/bin -m 755 firmware-util.sh`
+   `cd; curl -LO mrchromebox.tech/firmware-util.sh`
 
-`sudo firmware-util.sh`
+   `sudo install -Dt /usr/local/bin -m 755 firmware-util.sh`
 
-运行失败的解决方式，本地搭建服务器，然后把对应的固件下载下来先
+   `sudo firmware-util.sh`
 
-更改脚本
+2. 运行失败的解决方式
+   1. [本地搭建服务器](./../Ubuntu/apache2.md)，然后把对应的固件先下载下来
 
-`firmware-util.sh`中：
-script_url="https://raw.githubusercontent.com/MrChromebox/scripts/master/" ==>
-script_url="http://ip/file/"
+   2. 更改脚本
 
-`sources.sh` ，您需要将位于第 9 行到第 15 行的 URL(https://www.mrchromebox.tech/files/)替换成您的服务器地址:(http://ip/)
+      `firmware-util.sh`中：
+      script_url="https://raw.githubusercontent.com/MrChromebox/scripts/master/" ==>
+      script_url="http://ip/file/"
 
-`cd; curl -LO http://ip/file/firmware-util.sh`
+      `sources.sh` ，您需要将位于第 9 行到第 15 行的 URL(https://www.mrchromebox.tech/files/)替换成您的服务器地址:(http://ip/)
 
-`sudo install -Dt /usr/local/bin -m 755 firmware-util.sh`
+      `cd; curl -LO http://ip/file/firmware-util.sh`
 
-`sudo firmware-util.sh`
+      `sudo install -Dt /usr/local/bin -m 755 firmware-util.sh`
 
-便可进入
+      `sudo firmware-util.sh`
 
-注意
-Fw WP 项需为Disabled,如果是Enabled需要卸除主板上的写保护螺丝
-
-Thinkpad 13 Chromebook 写保护螺丝居然在键盘下面
-
-可以按照提示进行UEFI的 Full Rom 的 刷写，
-
-ps 要确保成功，任何报错都要解决问题并重新运行，否则可能会导致无法进入系统。
+   3. 利用国内的镜像下载安装[感谢wkkun.tech](https://webcache.googleusercontent.com/search?q=cache:sNrSdx932M8J:https://wkkun.tech/2020/02/03/c630-instruction/+&cd=5&hl=zh-CN&ct=clnk)
+      ```shell
+      cd; curl -LO wkkun.tech/main.sh && sudo bash main.sh
+      ```
+3. 进入脚本界面
+   1. 此处会现实系统的信息
+      1. 注意：Fw WP 项需为Disabled,如果是Enabled需要卸除主板上的写保护螺丝
+      2. Thinkpad 13 Chromebook 写保护螺丝居然在键盘下面
+   2. 选择菜单功能：一般有 `RW_LEGACY` 和 `Full ROM` 以及其他
+   3. 告知刷入会无法启动ChromeOS
+   4. 告知你刷机是危险行为
+   5. 询问你是否要保存原版BIOS，可以插入U盘并选择盘符，保存再重新运行选择
+   6. 等待下载完整镜像
+   7. 确保直到看见绿色的 <font color=green face="黑体"> Full ROM firmware successfully installed/updateed </font> 再进行重启操作
+   8. 否则！需要重新运行脚本直至完成,要不然会导致刷写失败，变砖
+4. 再次重启后，屏幕中央出现一个奔跑的兔子的logo
+5. 屏幕底部提示：按下 `ESC` 就可进入Boot选项设置，刷写完成，至此可以安装其他操作系统

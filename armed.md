@@ -244,6 +244,15 @@ sudo pacman -Syyu
 sudo pacman -S yay
 ```
 
+更新系统出现提示：无法锁定数据库，
+```shell
+#删除数据库缓存
+sudo rm -rf /var/lib/pacman/db.lck
+
+#重新更新
+sudo pacman -Syyu
+```
+
 # Programming
 
 ## gcc
