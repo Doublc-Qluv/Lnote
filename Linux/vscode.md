@@ -1,4 +1,4 @@
-# 安装vscode
+# 1-安装vscode
 
 [下载地址](https://code.visualstudio.com/#alt-downloads)
 
@@ -71,3 +71,38 @@ code-stable-xxxx.tar.gz
     ```shell
     sudo yum install libXScrnSaver
     ```
+
+# 2-使用注意
+
+- 虚拟机里出现的打开黑屏问题：可能是由于虚拟机的gpu加速造成的。修改操作如下：
+  - 如使用命令行打开将命令修改为
+  ```bash
+  code --disable-gpu
+  ```
+  - 如使用图标等快捷方式启动，以ubuntu为例，在启动图标中的两处加上`--disable-gpu`
+  ```bash
+  cd  /usr/share/applications
+  sudo vim code.desktop
+  ```
+  ```vi
+  [Desktop Entry]
+  Name=Visual Studio Code
+  Comment=Code Editing. Redefined.
+  GenericName=Text Editor
+  Exec=/usr/share/code/code --disable-gpu --unity-launch %F
+  Icon=com.visualstudio.code
+  Type=Application
+  StartupNotify=false
+  StartupWMClass=Code
+  Categories=Utility;TextEditor;Development;IDE;
+  MimeType=text/plain;inode/directory;application/x-code-workspace;
+  Actions=new-empty-window;
+  Keywords=vscode;
+
+  [Desktop Action new-empty-window]
+  Name=New Empty Window
+  Exec=/usr/share/code/code --disable-gpu --new-window %F
+  Icon=com.visualstudio.code
+  ```
+
+- 或者考虑在虚拟机软件中关闭`gpu加速`或者`3d加速`
