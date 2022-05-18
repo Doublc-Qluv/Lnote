@@ -1,7 +1,7 @@
 [TOC]
 
-# Software
-## Chrome
+# 1. Software
+## 1.1 Chrome
 对于新建的chrome，设置百度为默认搜索引擎
 - 搜索 搜索引擎(search engine)
 - 管理搜索引擎(Manage search engines)
@@ -9,12 +9,9 @@
 - 设置其为默认搜索引擎即可
 
 
-## git
+## 1.2 git
 
-
-
-
-### 一般git操作
+### 1.2.1 一般git操作
 ```shell
 git init
 
@@ -33,7 +30,7 @@ git push -u origin main
 中间可能会提示，让你配置用户名和邮箱，配置一下就行了
 
 
-### 一台电脑上配置git的不同远端仓库
+### 1.2.2 一台电脑上配置git的不同远端仓库
 以`github & gitee`为例 方法来源 [itchuan.net（钏）](https://blog.csdn.net/sinat_37390744/article/details/109023834)
 - 应知应会
   - 配置全局email和name
@@ -72,7 +69,7 @@ git push -u origin main
     ```
     ps`.ssh`路径要写全 win/mac/linux
 
-### .git文件夹太大的解决方法
+### 1.2.3 `.git`文件夹太大的解决方法
 
 方法来源[Intopass](https://www.zhihu.com/question/29769130/answer/45546231)
 1. 完全重建版本库
@@ -115,8 +112,8 @@ $ git rebase -i <first_commit>
 $ git push -f
 $ git gc --prune=now
 ```
-## Anaconda
-
+## 1.3 Anaconda
+### 1.3.1 更新导致不兼容
 使用anaconda创建一个新的环境，执行“conda create -n xx”，结果出现了
 
   “CondaHTTPError: HTTP 000 CONNECTION FAILED for url \<https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/win-64/current_repodata.json\>”
@@ -166,20 +163,26 @@ custom_channels:
   simpleitk: https://mirrors.bfsu.edu.cn/anaconda/cloud
 ```
 
-## VSCode
-- 国内下载缓慢的解决方式：将下载地址中一级域名:(az764295.vo.msecnd.net)，更换成(vscode.cdn.azure.cn)
+## 1.4 VSCode
 
-## Qt
+- 国内下载缓慢的解决方式：将下载地址中:(az764295.vo.msecnd.net)，更换成(vscode.cdn.azure.cn)
+
+[更多](./Linux/vscode.md)
+
+## 1.5 Qt
 - 下载开源版:[https://download.qt.io/official_releases/qt/](https://download.qt.io/official_releases/qt/)
 - 给下载的文件以可执行权限，(chmod +x qt*)
 - 修改配置文件(sudo vi  /usr/lib/x86_64-linux-gnu/qt-default/qtchooser/default.conf)
 
+## 1.6 Clash
 
-# System
-## Ubuntu
+[更多](./Linux/clash.md)
 
-### 配置
-- gnome 鼠标以及游标的大小
+# 2. System
+## 2.1 Ubuntu
+
+### 2.1.1 配置
+#### 2.1.1.1gnome 鼠标以及游标的大小
 
 |默认|中等|很大|更大|最大|
 |:--:|:--:|:--:|:--:|:--:|
@@ -191,14 +194,29 @@ $ gsettings get org.gnome.desktop.interface cursor-size
 # 改变大小
 $ gsettings set org.gnome.desktop.interface cursor-size [sizeInPixels]
 ```
+### 2.1.2 清理空间
+
+推荐工具: `ncdu`
+
+
+在/var/log/journal/垃圾日志文件，可以看到他的内存占用是比较大的，那么我们可以通过如下命令来清除这些日志文件
+
+journalctl --disk-usage        # 检查日志大小
+sudo journalctl --vacuum-time=1w    # 只保留一周的日志
+
+sudo journalctl --vacuum-size=500M    # 只保留500MB的日志
+
+rm -rf /var/log/journal/askd342fh35aewfhagf67iuro1（垃圾文件）    # 直接删除/var/log/journal/目录下的日志文件
+
+du -sh ~/.cache/thumbnails       # 检查缩略图缓存的大小
+rm -rf ~/.cache/thumbnails/*     # 清除缩略图缓存
 
 
 
 
+## 2.2 MAC
 
-## MAC
-
-### 更换Homebrew源（以中科大源为例）
+### 2.2.1 更换Homebrew源（以中科大源为例）
 ```shell
 替换brew.git:
 cd "$(brew --repo)"
@@ -208,7 +226,7 @@ git remote set-url origin https://mirrors.ustc.edu.cn/brew.git
 cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"
 git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-core.git
 ```
-### 换回官方源
+### 2.2.2 换回官方源
 ```shell
 重置brew.git:
 cd "$(brew --repo)"
@@ -218,14 +236,14 @@ git remote set-url origin https://github.com/Homebrew/brew.git
 cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"
 git remote set-url origin https://github.com/Homebrew/homebrew-core.git
 ```
-### 换源完更新
+### 2.2.3 换源完更新
 ```shell
 brew update
 ```
 
-## Manjaro
+## 2.3 Manjaro
 
-### 初始化设置
+### 2.3.1初始化设置
 选择下载源：
 ```bash
 sudo pacman-mirrors -i -c China -m rank
@@ -253,15 +271,15 @@ sudo rm -rf /var/lib/pacman/db.lck
 sudo pacman -Syyu
 ```
 
-# Programming
+# 3. Programming
 
-## gcc
-- pthread
+## 3.1 gcc
+### 3.1.1 pthread
 
 在带有`<pthread.h>`库进行编译时，一般要连接动态链接库 `libpthread.so`,即在gcc编译时，在末尾添加`-pthread`
 
-## python 
-- jupyter notebook
+## 3.2 python 
+### 3.2.1 jupyter notebook
 在jupyter notebook中切换不同环境的内核
 需要在当前需要运行的环境中安装 ipykernel
 ```bash

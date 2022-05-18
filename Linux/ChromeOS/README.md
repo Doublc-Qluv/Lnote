@@ -1,7 +1,9 @@
+[TOC]
+
 ChromeOS
 ----
 没错，搞了台 Chromebook！
-# 准备：
+# 1. 准备：
 
 1. 科学上网软件
 2. Google 账号
@@ -9,13 +11,13 @@ ChromeOS
 4. [开启开发者模式](./DeveloperMode.md)(建议)否则只能从 Googleplay 商店安装
 5. 如果有更换系统的打算，还要拆卸主板上的写保护螺丝
 
-# 进入系统
+# 2. 进入系统
 
 1. 使用一台可以科学上网的设备提供网络AP，在此我使用的无线AP创建软件是在安卓手机上的 `NetShare` ，使用方法请自行查找
 2. 按照系统提示完成 Google 账号的登录
 3. 此时已经可以窥得 ChromeOS 的系统全貌
 
-# 安装 Linux
+# 3. 安装 Linux
 
 目前常用的方法有
 - 通过 crouton 安装 Linux
@@ -24,13 +26,13 @@ ChromeOS
     
 - 更改 BIOS ，通过普通的方法安装 Linux
 
-## 通过 crouton 安装 Linux
+## 3.1 通过 crouton 安装 Linux
 参考点击[查看](https://github.com/dnschneid/crouton)文档
 1. 点击[下载](https://goo.gl/fd3zc)crouton脚本，脚本默认下载到 `~/Downloads` 文件夹里。
 2. 按下`Ctrl + Alt + T` 打开 crosh ，输入 `shell`，按下回车，进入命令行可见 *用户名@设备名* : `chronos@localhost` ，如果失败请查看时候开启开发者模式
 3. 键入 `sudo install -Dt /usr/local/bin -m 755 ~/Downloads/crouton` 将安装程序复制到可执行位置。这是较新版系统提供的保护措施，如果今后运行shell类文件报错也可以运行类似命令
 
-接下来就是疯狂报错的时刻
+**接下来就是疯狂报错的时刻**
 
 4. 键入 `sudo crouton` 
    1. 如果失败出现`Check your internet connection or proxy settings (-P) and try again.]`
@@ -88,7 +90,7 @@ ChromeOS
         1. GitHub上的地址在 https://github.com/cdr/code-server ，进去之后选择releases下载
         2. 命令行安装 `sudo dpkg -i code-*.deb`
 
-## 更改 BIOS 安装 Linux 发行版
+## 3.2 更改 BIOS 安装 Linux 发行版
 
 1. 安装mrchromebox的固件(实现UEFI引导)
 
@@ -129,6 +131,6 @@ ChromeOS
    5. 询问你是否要保存原版BIOS，可以插入U盘并选择盘符，保存再重新运行选择
    6. 等待下载完整镜像
    7. 确保直到看见绿色的 <font color=green face="黑体"> Full ROM firmware successfully installed/updateed </font> 再进行重启操作
-   8. 否则！需要重新运行脚本直至完成,要不然会导致刷写失败，变砖
+   8. 如果没有！需要重新运行脚本直至完成, **要不然会导致刷写失败，变砖!**
 4. 再次重启后，屏幕中央出现一个奔跑的兔子的logo
 5. 屏幕底部提示：按下 `ESC` 就可进入Boot选项设置，刷写完成，至此可以安装其他操作系统
