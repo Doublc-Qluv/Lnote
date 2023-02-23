@@ -68,13 +68,17 @@ INFO[0000] Start initial compatible provider AsianTV
 ## 1.7 配置
 变更自己的配置文件 `config.yaml` 和 `Country.mmdb`
 1. 一般来说，提供商会提供 `config.yaml` 替换现有的 `config.yaml`
-2. 或者通过订阅链接得到文件：
+2. 或者通过订阅链接得到文件：如果下载没有解析成功，可以在订阅地址后添加`&flag=clash`
   ```shell
   wget -O config.yaml "your subscribe link"
   ```
 3. 同时获得 `Country.mmdb`：
   ```shell
   wget -O Country.mmdb "https://www.sub-speeder.com/client-download/Country.mmdb"
+  ```
+  下载失败可以用本仓库的备用版本
+  ```shell
+  wget -O Country.mmdb "https://github.com/Doublc-Qluv/Lnote/releases/download/Linux/Country.mmdb"
   ```
 4. 如果无法完成订阅请检查 clash 版本 `clash -v`
    - 在1.0版本时，clash [更新了api](https://lancellc.gitbook.io/clash/whats-new/highlight)
