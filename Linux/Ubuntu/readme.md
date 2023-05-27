@@ -49,3 +49,4 @@ sudo snap remove xxx # 移除要安装的包
   sudo snap refresh snap-store # 重新输入
   ```
   - 未解决: `自动连接　snap "snap-store" 的符合条件的插头和插槽` 一直循环
+  - 补充: 以上需要时间，耐心等待
