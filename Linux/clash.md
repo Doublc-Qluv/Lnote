@@ -63,6 +63,10 @@ INFO[0000] Start initial compatible provider AsianTV
 2. 打开 `config.yaml` 页面，修改 `log-level` 为 `info`
 3. 可以看得到输出的 info 信息了
 4. 之后在浏览器中打开 `http://clash.razord.top/` 配置界面
+5. 在控制台页面，点击 “设置” -> “外部控制设置”，填入地址：
+- Host：127.0.0.1
+- 端口： 9090
+- 密钥： 12345678
 
 
 ## 1.7 配置
